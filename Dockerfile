@@ -1,9 +1,11 @@
 FROM alpine:latest
 
-RUN echo "https://mirror.tuna.tsinghua.edu.cn/alpine/latest-stable/main/" > /etc/apk/repositories
+#RUN echo "https://mirror.tuna.tsinghua.edu.cn/alpine/latest-stable/main/" > /etc/apk/repositories
 
-#RUN apk update && apk upgrade 
-
+RUN apk update && apk upgrade 
+RUN apk add python3
+RUN apk add --update py3-setuptools
+RUN apk add python3-dev
 RUN apk -U add \
 gcc \
 bash \
@@ -15,14 +17,13 @@ libxslt-dev \
 libevent-dev \
 musl-dev \
 openssl-dev \
-python-dev \
-py-imaging \
+python3-dev \
+
 py-pip \
 redis \
 curl ca-certificates \
 && update-ca-certificates \
 && rm -rf /var/cache/apk/*
-
 RUN pip install --upgrade pip \
 && pip install Scrapy
 
@@ -44,4 +45,4 @@ COPY launch.sh /runtime/launch.sh
 RUN chmod +x /runtime/launch.sh
 
 # 测试正常后可以打开下面的注释
-# ENTRYPOINT ["/runtime/launch.sh"]
+ ENTRYPOINT ["/runtime/launch.sh"]
