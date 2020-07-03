@@ -8,6 +8,7 @@ RUN apk add --update py3-setuptools
 RUN apk add python3-dev
 RUN apk -U add \
 gcc \
+g++ \
 bash \
 bash-doc \
 bash-completion \
@@ -45,4 +46,4 @@ COPY launch.sh /runtime/launch.sh
 RUN chmod +x /runtime/launch.sh
 
 # 测试正常后可以打开下面的注释
- ENTRYPOINT ["/runtime/launch.sh"]
+# ENTRYPOINT ["/runtime/launch.sh"]
