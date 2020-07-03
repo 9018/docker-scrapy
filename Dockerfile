@@ -46,4 +46,4 @@ COPY launch.sh /runtime/launch.sh
 RUN chmod +x /runtime/launch.sh
 
 # 测试正常后可以打开下面的注释
-# ENTRYPOINT ["/runtime/launch.sh"]
+ENTRYPOINT ["/runtime/launch.sh"]
